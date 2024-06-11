@@ -2,10 +2,12 @@
 #define random(a,b) a+rand()%(b+1-a)
 using namespace std;
 
-const string NAMES[] = { "Вася", "Катя", "Ира", "Коля", "Жора", "Игорь", "Гога" };
-const int COUNT_NAMES = 7;
+#include "prototypes.h"
+#include "constants.h"
+
 
 int** generateCardsSet() {
+    //  suit - ♥3 : ♦4 : ♣5 : ♠6
     int** set = new int* [52];
     for (int index=0,value = 2; value < 15; value++) {
         for (int suit = 3; suit < 7; suit++) {
@@ -43,16 +45,17 @@ void shuffle(int** array) {
     }
 }
 string* createPlayers(int count) {
-  if (count > 5 || count < 1) {
+  if (count > 6 || count < 1) {
     cout << "не верное количество игроков" << endl;
     return nullptr;
   }
   else {
     string* array = new string[count];
-    for (int i = 0, flag; i < count; i++) {
+    array[0] = "Игрок";
+    for (int i = 1, flag; i < count; i++) {
       array[i] = NAMES[random(0, COUNT_NAMES - 1)];
       flag = false;
-      for (int j = 0; j < i; j++) {
+      for (int j = 1; j < i; j++) {
         if (array[i] == array[j]) {
           flag = true;
           break;
@@ -77,19 +80,60 @@ void showPlayers(string*& players, int*& cash, int count) {
   }
 }
 
+void showPlayer(string players, int cash, int**& playersSet) {
+  cout << players << "\t" << cash << "$" << " [ ";
+  showCards(playersSet);
+  cout << "]" <<endl;
+}
+
+void transferTopCard(int**& outSet, int**& inSet) {
+  int countOutSet = _msize(outSet) / sizeof(outSet[0]);
+  int countInSet = _msize(inSet) / sizeof(inSet[0]);
+  int** outSetBuf = new int* [countOutSet - 1];
+  int** inSetBuf = new int* [countInSet + 1];
+  for (int i = 0; i < countOutSet - 1; i++) {
+    outSetBuf[i] = outSet[i];
+  }
+  for (int i = 0; i < countInSet; i++) {
+    inSetBuf[i] = inSet[i];
+  }
+  inSetBuf[countInSet] = outSet[countOutSet - 1];
+  delete[] inSet;
+  delete[] outSet;
+  inSet = inSetBuf;
+  outSet = outSetBuf;
+}
+
 int main()
 {
     srand(time(NULL));
     setlocale(LC_ALL, "");
-    //  ♥4 : ♦5 : ♣6 : ♠7
     int** mainSet = generateCardsSet();
     shuffle(mainSet);
     showCards(mainSet);
     cout << endl;
-    int playersCount = 5;
+    int playersCount = 6;
     string* playersName = createPlayers(playersCount);
     int* cash = createCash(playersCount, 1000);
-    showPlayers(playersName, cash, playersCount);
+    
+    int*** playersSets = new int** [playersCount];
+    for (int i = 0; i < playersCount; i++) {
+      playersSets[i] = new int* [0];
+    }
+
+    for (int i = 0; i < playersCount; i++) {
+      for (int j = 0; j < 2; j++) {
+        transferTopCard(mainSet, playersSets[i]);
+      }     
+    }
+
+    for (int i = 0; i < playersCount; i++) {
+      showPlayer(playersName[i], cash[i], playersSets[i]);
+    }
+
+    while (true) {
+
+    }
     
     
 }
