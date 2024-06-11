@@ -5,7 +5,6 @@ using namespace std;
 #include "prototypes.h"
 #include "constants.h"
 
-
 int** generateCardsSet() {
     //  suit - ♥3 : ♦4 : ♣5 : ♠6
     int** set = new int* [52];
@@ -79,13 +78,11 @@ void showPlayers(string*& players, int*& cash, int count) {
     cout << players[i] <<"\t" << cash[i]<<"$" << endl;
   }
 }
-
 void showPlayer(string players, int cash, int**& playersSet) {
   cout << players << "\t" << cash << "$" << " [ ";
   showCards(playersSet);
   cout << "]" <<endl;
 }
-
 void transferTopCard(int**& outSet, int**& inSet) {
   int countOutSet = _msize(outSet) / sizeof(outSet[0]);
   int countInSet = _msize(inSet) / sizeof(inSet[0]);
@@ -130,6 +127,14 @@ int main()
     for (int i = 0; i < playersCount; i++) {
       showPlayer(playersName[i], cash[i], playersSets[i]);
     }
+
+    int** tableSet = new int* [0];
+    for (int i = 0; i < 3; i++) {
+      transferTopCard(mainSet, tableSet);
+    }
+
+    cout << "стол: ";
+    showCards(tableSet);
 
     while (true) {
 
