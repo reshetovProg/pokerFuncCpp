@@ -1,7 +1,10 @@
 ﻿  poker.cpp
-C:\Users\Admin\Desktop\footballManagerConsole\pokerFuncCpp\poker.cpp(19,54): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
-C:\Users\Admin\Desktop\footballManagerConsole\pokerFuncCpp\poker.cpp(41,48): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
-C:\Users\Admin\Desktop\footballManagerConsole\pokerFuncCpp\poker.cpp(87,55): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
-C:\Users\Admin\Desktop\footballManagerConsole\pokerFuncCpp\poker.cpp(88,52): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
-C:\Users\Admin\Desktop\footballManagerConsole\pokerFuncCpp\poker.cpp(106,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
-  poker.vcxproj -> C:\Users\Admin\Desktop\footballManagerConsole\pokerFuncCpp\x64\Debug\poker.exe
+C:\Users\Admin\Desktop\pokerFuncCpp\poker.cpp(19,54): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\Admin\Desktop\pokerFuncCpp\poker.cpp(41,48): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\Admin\Desktop\pokerFuncCpp\poker.cpp(87,55): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\Admin\Desktop\pokerFuncCpp\poker.cpp(88,52): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\Admin\Desktop\pokerFuncCpp\poker.cpp(104,48): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\Admin\Desktop\pokerFuncCpp\poker.cpp(112,36): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\Admin\Desktop\pokerFuncCpp\poker.cpp(118,60): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\Admin\Desktop\pokerFuncCpp\poker.cpp(126,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  poker.vcxproj -> C:\Users\Admin\Desktop\pokerFuncCpp\x64\Debug\poker.exe
