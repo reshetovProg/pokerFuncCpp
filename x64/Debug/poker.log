@@ -5,6 +5,7 @@ C:\Users\Admin\Desktop\footballManagerConsole\pokerFuncCpp\poker.cpp(87,55): war
 C:\Users\Admin\Desktop\footballManagerConsole\pokerFuncCpp\poker.cpp(88,52): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
 C:\Users\Admin\Desktop\footballManagerConsole\pokerFuncCpp\poker.cpp(104,48): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
 C:\Users\Admin\Desktop\footballManagerConsole\pokerFuncCpp\poker.cpp(112,36): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
-C:\Users\Admin\Desktop\footballManagerConsole\pokerFuncCpp\poker.cpp(118,60): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
-C:\Users\Admin\Desktop\footballManagerConsole\pokerFuncCpp\poker.cpp(125,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+C:\Users\Admin\Desktop\footballManagerConsole\pokerFuncCpp\poker.cpp(119,37): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\Admin\Desktop\footballManagerConsole\pokerFuncCpp\poker.cpp(127,60): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\Admin\Desktop\footballManagerConsole\pokerFuncCpp\poker.cpp(134,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
   poker.vcxproj -> C:\Users\Admin\Desktop\footballManagerConsole\pokerFuncCpp\x64\Debug\poker.exe
