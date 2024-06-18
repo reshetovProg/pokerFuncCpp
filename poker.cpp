@@ -309,7 +309,7 @@ void secondRound(int indexSmallBlinde, int playersCount, int*& cash, int& bank, 
         } while (flag != 'n' && flag != 'y');
         if (flag == 'n') {
           checkPlayers[i] = true;
-          continue;
+          continue; //todo разобраться почему все остальные игроки тоже пасуют
         }
         cash[i] -= difBlinde;
         bank += difBlinde;
@@ -359,11 +359,11 @@ void startGame(int playersCount, string*& playersName, int*& cash, int**& mainSe
 
       transferTopCard(mainSet, tableSet);
 
-      showGame(mainSet, playersName, cash,
-          playersSets, playersCount, tableSet, bank, currentBlinde,
-          checkPlayers);
-
       resetCurrentBlinde(currentBlinde);
+
+      showGame(mainSet, playersName, cash,
+        playersSets, playersCount, tableSet, bank, currentBlinde,
+        checkPlayers);
    
     }
 
