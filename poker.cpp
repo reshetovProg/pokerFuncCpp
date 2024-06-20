@@ -318,6 +318,116 @@ void secondRound(int indexSmallBlinde, int playersCount, int*& cash, int& bank, 
   }
 }
 
+int** unionSets(int** array1, int** array2) {
+  int size1 = _msize(array1) / sizeof(array1[0]);
+  int size2 = _msize(array2) / sizeof(array2[0]);
+  int size3 = size1 + size2;
+  int** newArray = new int* [size3];
+  for (int i = 0; i < size1; i++) {
+    newArray[i] = array1[i];
+  }
+  for (int i = 0; i < size2; i++) {
+    newArray[i + size1] = array2[i];
+  }
+  return newArray;
+}
+/*
+- Кикер. Старшая карта.
+- Пара. Две карты одного достоинства.
+- Две пары. Две карты одного достоинства, две карты другого достоинства.
+- Сет. Три карты одного достоинства.
+- Стрит. Пять карт, которые выстроились по старшинству.
+- Флеш. Пять карт одной масти.
+- Фулл-хаус. Сет плюс пара.
+- Каре. Четыре карты одного достоинства.
+- Стрит-флеш. Пять карт одной масти, которые выстроились по старшинству.
+- Флеш-рояль. Пять карт от 10 до туза одной масти.
+*/
+
+enum Combinations {
+  KIKER,
+  PARA,
+  DVE_PARI,
+  SET,
+  STRIT,
+  FLASH,
+  FULL_HOUSE,
+  KARE,
+  STRIT_FLASH,
+  FLASH_ROYAL
+};
+//
+//bool isKiker(int** combination) {
+//  int size = _msize(combination) / sizeof(combination[0]);
+//
+//}
+
+int isPara(int** combination) {
+  int size = _msize(combination) / sizeof(combination[0]);
+  for (int i = size - 1; i > 0; i--) {
+    if (combination[i][0] == combination[i - 1][0])
+      return combination[i][0];
+  }
+  return -1;
+}
+
+int isDvePari(int** combination) {
+  int size = _msize(combination) / sizeof(combination[0]);
+  int countPare = 0;
+  int valueMaxPara = -1;
+  for (int i = size - 1; i > 0; i--) {
+    if (combination[i][0] == combination[i - 1][0]) {
+      if (countPare == 0) valueMaxPara = combination[i][0];
+      countPare++;
+    }
+  }
+  return valueMaxPara;
+}
+
+void combinationName(int** combination) {
+  int size = _msize(combination) / sizeof(combination[0]);
+  for (int i = 0; i < size; i++) {
+    if (isDvePari(combination) != -1)
+      cout << "две пары с максимальным номиналом " << isDvePari(combination);
+    else if (isPara(combination) != -1)
+      cout << "пара с максимальным номиналом " << isPara(combination);
+    else cout << "старшая карта " << combination[i][size - 1];
+    cout << endl;
+  }
+
+}
+
+void sortSet(int**& set) {
+  int size = _msize(set) / sizeof(set);
+  for (int i = 1; i < size; i++) {
+    for (int j = i; j > 0; j--) {
+      if (set[j][0] < set[j-1][0]) {
+        swap(set[j][0], set[j-1][0]);
+      }
+      else break;
+    }
+  }
+}
+
+void showCombinations (string*& playersName, int***& playersSets, 
+  int& playersCount, int**& tableSet, bool* checkPlayers) {
+
+  for (int i = 0; i < playersCount; i++) {
+    if (checkPlayers[i]) {
+      cout << playersName[i] << " пасанул" << endl;
+      continue;
+    }
+    int** combination = unionSets(tableSet, playersSets[i]);
+    cout << playersName[i] << "[ ";
+    sortSet(combination);
+    showCards(combination);
+    cout << " ] ";
+    combinationName(combination);
+    cout << endl;
+  }
+
+}
+
 void startGame(int playersCount, string*& playersName, int*& cash, int**& mainSet) {
     int*** playersSets = new int** [playersCount]; // колоды игроков
     int bank = 0;
@@ -371,6 +481,8 @@ void startGame(int playersCount, string*& playersName, int*& cash, int**& mainSe
     showGame(mainSet, playersName, cash,
       playersSets, playersCount, tableSet, bank, currentBlinde,
       checkPlayers);
+    showCombinations(playersName, playersSets,
+      playersCount, tableSet, checkPlayers);
 }
 
 int main()
