@@ -11,3 +11,5 @@ string* createPlayers(int count);
 int* createCash(int countPlayers, int countMoney);
 // отображение инфы об игроках
 void showPlayers(string*& players, int*& cash, int count);
+//сортировка колоды по номиналу
+void sortSet(int**& set);

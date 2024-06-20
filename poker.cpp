@@ -324,10 +324,10 @@ int** unionSets(int** array1, int** array2) {
   int size3 = size1 + size2;
   int** newArray = new int* [size3];
   for (int i = 0; i < size1; i++) {
-    newArray[i] = array1[i];
+    newArray[i] = new int[2]{ array1[i][0] ,array1[i][1] };
   }
   for (int i = 0; i < size2; i++) {
-    newArray[i + size1] = array2[i];
+    newArray[i + size1] = new int[2]{ array2[i][0] ,array2[i][1] };
   }
   return newArray;
 }
@@ -381,13 +381,29 @@ int isDvePari(int** combination) {
       countPare++;
     }
   }
-  return valueMaxPara;
+  if (countPare > 1)  return valueMaxPara;
+  else return -1;
+
+}
+
+int isSet(int** combination) {
+  int size = _msize(combination) / sizeof(combination[0]);
+  int valueMaxTrio = -1;
+  for (int i = size - 1; i > 1; i--) {
+    if (combination[i][0] == combination[i - 2][0]) {
+      valueMaxTrio = combination[i][0];
+      break;
+    }
+  }
+  return valueMaxTrio;
 }
 
 void combinationName(int** combination) {
   int size = _msize(combination) / sizeof(combination[0]);
   for (int i = 0; i < size; i++) {
-    if (isDvePari(combination) != -1)
+    if (isSet(combination) != -1)
+      cout << "сет с максимальным номиналом " << isSet(combination);
+    else if (isDvePari(combination) != -1)
       cout << "две пары с максимальным номиналом " << isDvePari(combination);
     else if (isPara(combination) != -1)
       cout << "пара с максимальным номиналом " << isPara(combination);
